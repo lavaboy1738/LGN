@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.scss';
-import {PopularGamesURL} from "./api";
+import {useDispatch} from "react-redux";
+import {loadGames} from "./redux/actions/gamesAction";
 
 function App() {
-  const url = PopularGamesURL();
-  console.log(url);
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(loadGames())
+  })
   return (
     <div className="App">
       hello world
