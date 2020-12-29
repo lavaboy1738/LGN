@@ -2,19 +2,19 @@ const initState = {
     popularGames: [],
     newGames: [],
     upcomingGames: [],
-    searchedGame: []
+    searchedGame: ""
 }
 
 type Action = {
     type: string;
     payload: {
-        popularGames?: [],
-        upcomingGames?: [],
-        newGames?: []
+        popularGames?: any[],
+        upcomingGames?: any[],
+        newGames?: any[]
     }
 }
 
-export const gamesReducer = (state = initState, action: Action) => {
+export const gamesReducer = (state: any, action: Action) => {
     switch(action.type){
         case "FETCH_GAMES":
             return {...state, 
