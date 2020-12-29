@@ -6,8 +6,7 @@ import {RootState} from "../redux/reducers/index";
 import styled from "styled-components";
 
 const HomeStyles = styled.div`
-    border: 1px solid red;
-    padding: 4vw;
+    padding: 2vw 4vw;
 `
 
 const GamesPreviewStyles = styled.div`
@@ -15,9 +14,8 @@ const GamesPreviewStyles = styled.div`
         padding: 1rem 0;
     }
     .games-preview-games{
-        min-height: 80vh;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
         grid-column-gap: 3rem;
         grid-row-gap: 3rem;
     }
