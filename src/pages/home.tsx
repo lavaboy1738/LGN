@@ -5,6 +5,7 @@ import {loadGames} from "../redux/actions/gamesAction";
 import {GameCard} from "../Components/GameCard";
 import {RootState} from "../redux/reducers/index";
 import styled from "styled-components";
+import {GameDetail} from "../Components/GameDetail";
 
 const HomeStyles = styled.div`
     padding: 2vw 4vw;
@@ -32,6 +33,12 @@ const Home = ()=>{
 
     return (
         <HomeStyles>
+            {
+                popularGames?
+                <GameDetail/>
+                :
+                undefined
+            }
             <GamesPreviewStyles>
                 <h1 className="games-preview-title">Popular Games</h1>
                 <div className="games-preview-games">
