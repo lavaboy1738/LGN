@@ -1,3 +1,9 @@
+const initialState = {
+    game: undefined,
+    images: undefined,
+    isLoading: true
+}
+
 type Action = {
     type: string;
     payload: {
@@ -6,13 +12,19 @@ type Action = {
     }
 }
 
-const detailReducer = (state: any, action: Action)=>{
+const detailReducer = (state = initialState, action: Action)=>{
     switch(action.type){
         case "GET_DETAIL":
             return {
                 ...state,
                 game: action.payload.game,
-                images: action.payload.images
+                images: action.payload.images,
+                isLoading: false
+            }
+        case "LOADING_DETAIL":
+            return {
+                ...state,
+                isLoading: true
             }
         default:
             return{

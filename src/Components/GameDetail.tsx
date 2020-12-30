@@ -84,12 +84,12 @@ const GameDetailStyles = styled.div`
 
 
 const GameDetail = () => {
-    const {images, game} = useSelector((state: RootState) => state.detail);
+    const {images, game, isLoading} = useSelector((state: RootState) => state.detail);
     
     return(
         <>
             {
-                game&&images?
+                !isLoading?
         <GameDetailShadowStyles>
             <GameDetailStyles>
                 <div className="info">
