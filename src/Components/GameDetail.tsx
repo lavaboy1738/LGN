@@ -1,7 +1,8 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import styled from "styled-components";
 import {useSelector} from "react-redux";
 import {RootState} from "../redux/reducers/index";
+import { useHistory } from "react-router-dom";
 
 const GameDetailShadowStyles = styled.div`
     width: 100%;
@@ -85,12 +86,21 @@ const GameDetailStyles = styled.div`
 
 const GameDetail = () => {
     const {images, game, isLoading} = useSelector((state: RootState) => state.detail);
+
+    const history = useHistory();
+
+    const exitDetailHandler = (e: React.MouseEvent)=> {
+        if((e.target as HTMLElement).classList.contains("shadow")){
+            document.body.style.overflow="auto";
+            history.push("/");
+        }
+    }
     
     return(
         <>
             {
                 !isLoading?
-        <GameDetailShadowStyles>
+        <GameDetailShadowStyles className="shadow" onClick={exitDetailHandler}>
             <GameDetailStyles>
                 <div className="info">
                     <div className="info-left">

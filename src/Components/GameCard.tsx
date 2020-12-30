@@ -59,6 +59,7 @@ type Prop= {
 const GameCard = ({name, released, imageURL, id}: Prop)=>{
     const dispatch = useDispatch();
     const loadDetailHandler = ()=>{
+        document.body.style.overflow = "hidden";
         dispatch(loadDetail(id))
     }
     return (
