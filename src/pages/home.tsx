@@ -6,6 +6,7 @@ import {GameCard} from "../Components/GameCard";
 import {RootState} from "../redux/reducers/index";
 import styled from "styled-components";
 import {GameDetail} from "../Components/GameDetail";
+import {useLocation} from "react-router-dom";
 
 const HomeStyles = styled.div`
     padding: 2vw 4vw;
@@ -17,13 +18,15 @@ const GamesPreviewStyles = styled.div`
     }
     .games-preview-games{
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
         grid-column-gap: 3rem;
         grid-row-gap: 3rem;
     }
 `
 
 const Home = ()=>{
+    const location = useLocation();
+    const pathID = location.pathname.split("/");
     const dispatch = useDispatch()
     useEffect(()=>{
       dispatch(loadGames())
@@ -34,10 +37,7 @@ const Home = ()=>{
     return (
         <HomeStyles>
             {
-                popularGames?
-                <GameDetail/>
-                :
-                undefined
+                pathID[pathID.length-1] && <GameDetail/>
             }
             <GamesPreviewStyles>
                 <h1 className="games-preview-title">Popular Games</h1>

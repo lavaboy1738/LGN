@@ -19,6 +19,10 @@ const GlobalStyles = createGlobalStyle`
     body{
         font-family: Jakarta-text;
     }
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
 `
 
 export {GlobalStyles};

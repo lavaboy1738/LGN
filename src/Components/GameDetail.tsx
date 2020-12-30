@@ -29,10 +29,34 @@ const GameDetailStyles = styled.div`
         display: flex;
         justify-content: space-between;
         &-left{
-
+            width: 60%;
+            &-title{
+                h1{
+                    font-size: 2rem;
+                }
+            }
+            &-rating{
+                h2{
+                    font-size: 1.5rem;
+                    font-weight: 200;
+                }
+            }
         }
         &-right{
-
+            width: 40%;
+            text-align: right;
+            margin-right: -1rem;
+            &-platforms-title{
+                line-height: 2rem;
+                font-size: 1rem;
+                margin-right: 1rem;
+            }
+            &-platforms{
+                margin-top: 1rem;
+                span{
+                    margin: 0 1rem;
+                }
+            }
         }
     }
     .main-image{
@@ -43,7 +67,11 @@ const GameDetailStyles = styled.div`
         }
     }
     .descriptions{
-
+        p{
+            font-size: 1.2rem;
+            font-weight: 200;
+            line-height: 150%;
+        }
     }
     .screenshots{
         img{
@@ -62,7 +90,7 @@ const GameDetail = () => {
         <>
             {
                 game&&images?
-                <GameDetailShadowStyles>
+        <GameDetailShadowStyles>
             <GameDetailStyles>
                 <div className="info">
                     <div className="info-left">
@@ -78,7 +106,7 @@ const GameDetail = () => {
                         <div className="info-right-platforms">
                             {
                                 game.platforms.map((platform: any)=>{
-                                    return <span key={platform}>{platform.platform.name}</span>
+                                    return <span key={platform.platform.id}>{platform.platform.name}</span>
                                 })
                             }
                         </div>
@@ -98,7 +126,7 @@ const GameDetail = () => {
                     }
                 </div>
             </GameDetailStyles>
-            </GameDetailShadowStyles>
+        </GameDetailShadowStyles>
             :
             undefined
         }
