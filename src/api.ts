@@ -2,6 +2,8 @@ type GamesURLs = {
     popularGamesURL: string;
     upcomingGamesURL: string;
     newGamesURL: string;
+    gameDetailsURL: (id: string)=> string,
+    gameImagesURL: (id:string) => string,
 }
 
 export const GetGamesURL: () => GamesURLs = () => {
@@ -27,9 +29,14 @@ export const GetGamesURL: () => GamesURLs = () => {
     const upcomingGamesURL = `${base_url}games?dates=${currentDate},${currentDateNextYear}&ordering=-added&page_size=12`;
     const newGamesURL = `${base_url}games?dates=${currentDateLastYear},${currentDate}&ordering=-released&page_size=12`;
 
+    const gameDetailsURL = (gameID: string) => `${base_url}games/${gameID}`
+    const gameImagesURL = (gameID:string) => `${base_url}games/${gameID}/screenshots`
+
     return {
         popularGamesURL,
         upcomingGamesURL,
-        newGamesURL
+        newGamesURL,
+        gameDetailsURL,
+        gameImagesURL
     }
 }

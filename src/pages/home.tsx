@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import {useDispatch, useSelector} from "react-redux";
+import {Game} from "../redux/reducers/gamesReducer";
 import {loadGames} from "../redux/actions/gamesAction";
 import {GameCard} from "../Components/GameCard";
 import {RootState} from "../redux/reducers/index";
@@ -36,7 +37,7 @@ const Home = ()=>{
                 <div className="games-preview-games">
                     {
                         popularGames?
-                        popularGames.map((game: any)=>{
+                        popularGames.map((game: Game)=>{
                             return (
                                 <GameCard 
                                 name={game.name} 

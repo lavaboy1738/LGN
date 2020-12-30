@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import {motion} from "framer-motion";
+import {useDispatch} from "react-redux";
+import {loadDetail} from "../redux/actions/detailAction";
 
 const GameCardStyle = styled.div`
     height: 25rem;
@@ -52,9 +54,13 @@ type Prop= {
     imageURL: string
 }
 
-const GameCard = ({name, released, imageURL}: Prop)=>{
+const GameCard = ({name, released, imageURL, id}: Prop)=>{
+    const dispatch = useDispatch();
+    const loadDetailHandler = ()=>{
+        dispatch(loadDetail(id))
+    }
     return (
-        <GameCardStyle>
+        <GameCardStyle onClick={loadDetailHandler}>
             <div className="game-title">
                 <h1>{name}</h1>
             </div>

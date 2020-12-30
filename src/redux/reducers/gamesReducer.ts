@@ -1,16 +1,16 @@
-const initState = {
-    popularGames: [],
-    newGames: [],
-    upcomingGames: [],
-    searchedGame: ""
+export type Game = {
+    name: string,
+    released: string,
+    id: string,
+    background_image: string
 }
 
 type Action = {
     type: string;
     payload: {
-        popularGames?: any[],
-        upcomingGames?: any[],
-        newGames?: any[]
+        popularGames?: Game[],
+        upcomingGames?: Game[],
+        newGames?: Game[]
     }
 }
 
