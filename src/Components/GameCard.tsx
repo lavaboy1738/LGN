@@ -4,6 +4,7 @@ import {motion} from "framer-motion";
 import {useDispatch} from "react-redux";
 import {loadDetail} from "../redux/actions/detailAction";
 import {Link} from "react-router-dom";
+import {resizeImage} from "../util";
 
 const GameCardStyle = styled.div`
     height: 25rem;
@@ -70,7 +71,7 @@ const GameCard = ({name, released, imageURL, id}: Prop)=>{
                 </div>
                 <h2>Release Date: {released}</h2>
                 <div className="game-image">
-                    <img src={imageURL} alt={name}/>
+                    <img src={resizeImage(imageURL, 1280)} alt={name}/>
                 </div>
             </GameCardStyle>
         </Link>

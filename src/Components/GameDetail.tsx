@@ -3,6 +3,7 @@ import styled from "styled-components";
 import {useSelector} from "react-redux";
 import {RootState} from "../redux/reducers/index";
 import { useHistory } from "react-router-dom";
+import {resizeImage} from "../util";
 
 const GameDetailShadowStyles = styled.div`
     width: 100%;
@@ -99,7 +100,7 @@ const GameDetail = () => {
     return(
         <>
             {
-                !isLoading?
+                !isLoading&&game&&images?
         <GameDetailShadowStyles className="shadow" onClick={exitDetailHandler}>
             <GameDetailStyles>
                 <div className="info">
@@ -123,7 +124,7 @@ const GameDetail = () => {
                     </div>
                 </div>
                 <div className="main-image">
-                    <img src={game.background_image} alt=""/>
+                    <img src={resizeImage(game.background_image, 1920)} alt=""/>
                 </div>
                 <div className="descriptions">
                     <p>{game.description_raw}</p>
@@ -131,7 +132,7 @@ const GameDetail = () => {
                 <div className="screenshots">
                     {
                         images.results.map((image:any)=>{
-                            return <img key={image.id} src={image.image} alt=""/>
+                            return <img key={image.id} src={resizeImage(image.image, 1920)} alt=""/>
                         })
                     }
                 </div>
