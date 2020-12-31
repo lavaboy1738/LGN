@@ -7,7 +7,6 @@ import {resizeImage} from "../util";
 import {motion} from "framer-motion";
 import halfStar from "../assets/images/half-star.svg";
 import star from "../assets/images/star.svg";
-import { svgElements } from "framer-motion/types/render/dom/utils/supported-elements";
 
 const GameDetailShadowStyles = styled.div`
     width: 100%;
@@ -62,12 +61,10 @@ const GameDetailStyles = styled(motion.div)`
             text-align: right;
             margin-right: -1rem;
             &-platforms-title{
-                line-height: 2rem;
                 font-size: 1rem;
                 margin-right: 1rem;
             }
             &-platforms{
-                margin-top: 0.5rem;
                 margin-right: 1rem;
             }
         }
@@ -113,14 +110,18 @@ const GameDetail = (props: Prop) => {
 
     const getStars = (rating: number)=>{
         const whole = Math.floor(rating);
-        const partial = rating%1;
-        const stars = [];
-        for(let i = 1; i<=whole; i++ ){
-            stars.push(<img src={star} key={i} alt=""/>)
+        if(whole === 0){
+            return [];
+        }else{
+            const partial = rating%1;
+            const stars = [];
+            for(let i = 1; i<=whole; i++ ){
+                stars.push(<img src={star} key={i} alt=""/>)
+            }
+            partial < 0.5? stars.push(<img src={halfStar} key={whole+1} alt=""/>) : stars.push(<img src={star} key={whole+1} alt=""/>);
+    
+            return stars;
         }
-        partial < 0.5? stars.push(<img src={halfStar} alt=""/>) : stars.push(<img src={star} alt=""/>);
-
-        return stars;
     }
 
     return(
