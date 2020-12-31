@@ -12,6 +12,7 @@ const GameDetailShadowStyles = styled.div`
     overflow-y: scroll;
     background: rgba(0,0,0,0.4);
     position: fixed;
+    z-index: 1;
     top: 0;
     left: 0;
     &::-webkit-scrollbar{
@@ -22,12 +23,12 @@ const GameDetailShadowStyles = styled.div`
 const GameDetailStyles = styled(motion.div)`
     width: 80%;
     border-radius: 1rem;
-    margin: 5rem 0;
+    margin: 5rem auto;
     padding: 2rem;
     background: white;
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 10%;
+    z-index: 2;
     .info{
         display: flex;
         justify-content: space-between;
@@ -56,9 +57,7 @@ const GameDetailStyles = styled(motion.div)`
             }
             &-platforms{
                 margin-top: 1rem;
-                span{
-                    margin: 0 1rem;
-                }
+                margin-right: 1rem;
             }
         }
     }
@@ -113,15 +112,24 @@ const GameDetail = (props: Prop) => {
                             <motion.h1 layoutId={`title ${props.pathID}`}>{game.name}</motion.h1>
                         </div>
                         <div className="info-left-rating">
-                            <h2>Rating: {game.rating}</h2>
+                            {
+                                game.rating === 0?
+                                <h2>Rating: Not Available</h2>
+                                :
+                                <h2>Rating: {game.rating}</h2>
+
+                            }
                         </div>
                     </div>
                     <div className="info-right">
                         <div className="info-right-platforms-title">Platform</div>
                         <div className="info-right-platforms">
                             {
-                                game.platforms.map((platform: any)=>{
-                                    return <span key={platform.platform.id}>{platform.platform.name}</span>
+                                game.platforms.map((platform: any, index: number)=>{
+                                    return (index === game.platforms.length-1?
+                                    <span key={platform.platform.id}>{platform.platform.name}</span>
+                                    :
+                                    <span key={platform.platform.id}>{platform.platform.name}, </span>)
                                 })
                             }
                         </div>
