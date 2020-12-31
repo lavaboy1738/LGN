@@ -7,12 +7,13 @@ import {RootState} from "../redux/reducers/index";
 import styled from "styled-components";
 import {GameDetail} from "../Components/GameDetail";
 import {useLocation} from "react-router-dom";
+import {motion, AnimatePresence, AnimateSharedLayout} from "framer-motion";
 
 const HomeStyles = styled.div`
     padding: 2vw 4vw;
 `
 
-const GamesPreviewStyles = styled.div`
+const GamesPreviewStyles = styled(motion.div)`
     .games-preview-title{
         padding: 1rem 0;
     }
@@ -36,9 +37,10 @@ const Home = ()=>{
 
     return (
         <HomeStyles>
-            {
-                pathID[pathID.length-1] && <GameDetail/>
-            }
+            <AnimateSharedLayout type="crossfade">
+            <AnimatePresence>
+                {pathID[pathID.length-1] && <GameDetail pathID={pathID[pathID.length-1]}/>}
+            </AnimatePresence>
             <GamesPreviewStyles>
                 <h1 className="games-preview-title">Popular Games</h1>
                 <div className="games-preview-games">
@@ -99,6 +101,7 @@ const Home = ()=>{
                     }
                 </div>
             </GamesPreviewStyles>
+            </AnimateSharedLayout>
         </HomeStyles>
     )
 }

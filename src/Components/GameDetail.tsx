@@ -1,9 +1,10 @@
-import React, { SyntheticEvent } from "react";
+import React from "react";
 import styled from "styled-components";
 import {useSelector} from "react-redux";
 import {RootState} from "../redux/reducers/index";
 import { useHistory } from "react-router-dom";
 import {resizeImage} from "../util";
+import {motion} from "framer-motion";
 
 const GameDetailShadowStyles = styled.div`
     width: 100%;
@@ -18,7 +19,7 @@ const GameDetailShadowStyles = styled.div`
     }
 `
 
-const GameDetailStyles = styled.div`
+const GameDetailStyles = styled(motion.div)`
     width: 80%;
     border-radius: 1rem;
     margin: 5rem 0;
@@ -84,8 +85,11 @@ const GameDetailStyles = styled.div`
     }
 `
 
+type Prop = {
+    pathID: string;
+}
 
-const GameDetail = () => {
+const GameDetail = (props: Prop) => {
     const {images, game, isLoading} = useSelector((state: RootState) => state.detail);
 
     const history = useHistory();
@@ -102,11 +106,11 @@ const GameDetail = () => {
             {
                 !isLoading&&game&&images?
         <GameDetailShadowStyles className="shadow" onClick={exitDetailHandler}>
-            <GameDetailStyles>
+            <GameDetailStyles layoutId ={props.pathID}>
                 <div className="info">
                     <div className="info-left">
                         <div className="info-left-title">
-                            <h1>{game.name}</h1>
+                            <motion.h1 layoutId={`title ${props.pathID}`}>{game.name}</motion.h1>
                         </div>
                         <div className="info-left-rating">
                             <h2>Rating: {game.rating}</h2>
@@ -124,7 +128,7 @@ const GameDetail = () => {
                     </div>
                 </div>
                 <div className="main-image">
-                    <img src={resizeImage(game.background_image, 1920)} alt=""/>
+                    <motion.img src={resizeImage(game.background_image, 1920)} layoutId ={`image ${props.pathID}`} alt=""/>
                 </div>
                 <div className="descriptions">
                     <p>{game.description_raw}</p>

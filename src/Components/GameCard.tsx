@@ -6,7 +6,7 @@ import {loadDetail} from "../redux/actions/detailAction";
 import {Link} from "react-router-dom";
 import {resizeImage} from "../util";
 
-const GameCardStyle = styled.div`
+const GameCardStyle = styled(motion.div)`
     height: 25rem;
     box-shadow: 0px 5px 30px rgba(0,0,0,0.2);
     border-radius: 1rem;
@@ -65,13 +65,14 @@ const GameCard = ({name, released, imageURL, id}: Prop)=>{
     }
     return (
         <Link to={`/game/${id}`}>
-            <GameCardStyle onClick={loadDetailHandler}>
+            <GameCardStyle onClick={loadDetailHandler} layoutId={id.toString()}>
+                
                 <div className="game-title">
-                    <h1>{name}</h1>
+                    <motion.h1 layoutId={`title ${id.toString()}`} >{name}</motion.h1>
                 </div>
                 <h2>Release Date: {released}</h2>
                 <div className="game-image">
-                    <img src={resizeImage(imageURL, 1280)} alt={name}/>
+                    <motion.img src={resizeImage(imageURL, 1280)} layoutId={`image ${id.toString()}`} alt={name}/>
                 </div>
             </GameCardStyle>
         </Link>
