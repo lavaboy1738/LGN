@@ -5,6 +5,9 @@ import {RootState} from "../redux/reducers/index";
 import { useHistory } from "react-router-dom";
 import {resizeImage} from "../util";
 import {motion} from "framer-motion";
+import halfStar from "../assets/images/half-star.svg";
+import star from "../assets/images/star.svg";
+import { svgElements } from "framer-motion/types/render/dom/utils/supported-elements";
 
 const GameDetailShadowStyles = styled.div`
     width: 100%;
@@ -40,9 +43,17 @@ const GameDetailStyles = styled(motion.div)`
                 }
             }
             &-rating{
+                margin-top: 0.5rem;
                 h2{
-                    font-size: 1.5rem;
+                    font-size: 1rem;
                     font-weight: 200;
+                }
+            }
+            &-stars{
+                margin-top: 0.5rem;
+                img{
+                    width: 1.1rem;
+                    height: 1.1rem;
                 }
             }
         }
@@ -56,7 +67,7 @@ const GameDetailStyles = styled(motion.div)`
                 margin-right: 1rem;
             }
             &-platforms{
-                margin-top: 1rem;
+                margin-top: 0.5rem;
                 margin-right: 1rem;
             }
         }
@@ -99,7 +110,19 @@ const GameDetail = (props: Prop) => {
             history.push("/");
         }
     }
-    
+
+    const getStars = (rating: number)=>{
+        const whole = Math.floor(rating);
+        const partial = rating%1;
+        const stars = [];
+        for(let i = 1; i<=whole; i++ ){
+            stars.push(<img src={star} key={i} alt=""/>)
+        }
+        partial < 0.5? stars.push(<img src={halfStar} alt=""/>) : stars.push(<img src={star} alt=""/>);
+
+        return stars;
+    }
+
     return(
         <>
             {
@@ -118,6 +141,13 @@ const GameDetail = (props: Prop) => {
                                 :
                                 <h2>Rating: {game.rating}</h2>
 
+                            }
+                        </div>
+                        <div className="info-left-stars">
+                            {
+                                getStars(game.rating).map((star)=>{
+                                    return star
+                                })
                             }
                         </div>
                     </div>

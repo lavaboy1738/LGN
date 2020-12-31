@@ -42,7 +42,7 @@ const GameCardStyle = styled(motion.div)`
             flex-grow: 1;
             img{
                 object-fit: cover;
-                /* object-position: center; */
+                object-position: center;
                 width: 100%;
                 height: 20rem;
             }
