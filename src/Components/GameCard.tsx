@@ -41,11 +41,10 @@ const GameCardStyle = styled(motion.div)`
             width: 100%;
             flex-grow: 1;
             img{
-                width: 100%;
-                height: 100%;
-                display: block;
                 object-fit: cover;
-                object-position: center;
+                /* object-position: center; */
+                width: 100%;
+                height: 20rem;
             }
         }
 `
