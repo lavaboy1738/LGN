@@ -14,8 +14,9 @@ const HomeStyles = styled.div`
 `
 
 const GamesPreviewStyles = styled(motion.div)`
+    margin-bottom: 3rem;
     .games-preview-title{
-        padding: 1rem 0;
+        padding: 2rem 0;
     }
     .games-preview-games{
         display: grid;
