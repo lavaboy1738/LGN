@@ -4,6 +4,7 @@ type GamesURLs = {
     newGamesURL: string;
     gameDetailsURL: (id: string)=> string,
     gameImagesURL: (id:string) => string,
+    searchedGameURL: (gameName: string) => string;
 }
 
 export const GetGamesURL: () => GamesURLs = () => {
@@ -31,12 +32,14 @@ export const GetGamesURL: () => GamesURLs = () => {
 
     const gameDetailsURL = (gameID: string) => `${base_url}games/${gameID}`
     const gameImagesURL = (gameID:string) => `${base_url}games/${gameID}/screenshots`
+    const searchedGameURL = (gameName: string)=> `${base_url}games?search=${gameName}&page_size=6` 
 
     return {
         popularGamesURL,
         upcomingGamesURL,
         newGamesURL,
         gameDetailsURL,
-        gameImagesURL
+        gameImagesURL,
+        searchedGameURL
     }
 }

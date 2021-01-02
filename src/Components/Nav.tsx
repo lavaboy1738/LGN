@@ -1,8 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
-import {motion} from "framer-motion";
 import logo from "../assets/images/logo.svg";
-import {Link} from "react-router-dom";
+import {fetchSearchedGames} from "../redux/actions/gamesAction";
+import {useDispatch} from "react-redux";
 
 const NavStyles = styled.nav`
     padding: 2vw 4vw 0 4vw;
@@ -73,18 +73,35 @@ const NavStyles = styled.nav`
 `
 
 const Nav = ()=>{
+    const dispatch = useDispatch();
+    const [textInput, setTextInput] = useState("");
+
+    const inputHandler = (e: React.ChangeEvent<HTMLInputElement>)=>{
+        setTextInput((e.target as HTMLInputElement).value)
+    }
+
+    const submitSearch = (e: React.FormEvent<HTMLButtonElement>)=>{
+        e.preventDefault();
+        dispatch(fetchSearchedGames(textInput));
+        setTextInput("");
+    }
+
+    const clearSearched = ()=>{
+        dispatch({type: "CLEAR_SEARCHED"});
+    }
+
     return (
         <NavStyles>
-            <Link className="logo" to="/">
+            <div className="logo" onClick={clearSearched}>
                 <img src={logo} alt=""/>
-            </Link>
-            <div className="search">
+            </div>
+            <form className="search">
                 <div className="input-box">
-                    <input type="text" required/>
+                    <input value={textInput} onChange={inputHandler} type="text" required/>
                     <span className="input-span"></span>
                 </div>
-                <button>Search</button>
-            </div>
+                <button type="submit" onClick={submitSearch} >Search</button>
+            </form>
         </NavStyles>
     )
 }

@@ -33,7 +33,7 @@ const Home = ()=>{
       dispatch(loadGames())
     }, [dispatch])
 
-    const {popularGames, upcomingGames, newGames}= useSelector((state: RootState) => state.games)
+    const {popularGames, upcomingGames, newGames, searchedGames}= useSelector((state: RootState) => state.games)
 
     return (
         <HomeStyles>
@@ -41,6 +41,30 @@ const Home = ()=>{
             <AnimatePresence>
                 {pathID[pathID.length-1] && <GameDetail pathID={pathID[pathID.length-1]}/>}
             </AnimatePresence>
+            {searchedGames && searchedGames.length? 
+                <GamesPreviewStyles>
+                    <h1 className="games-preview-title">Search Results</h1>
+                    <div className="games-preview-games">
+                        {
+                            searchedGames?
+                            searchedGames.map((game: Game)=>{
+                                return (
+                                    <GameCard 
+                                    name={game.name} 
+                                    released = {game.released} 
+                                    id={game.id}
+                                    imageURL={game.background_image} 
+                                    key={game.id}/>
+                                )
+                            })
+                            :
+                            undefined
+                        }
+                    </div>
+                </GamesPreviewStyles>
+                :
+                ""
+            }
             <GamesPreviewStyles>
                 <h1 className="games-preview-title">Popular Games</h1>
                 <div className="games-preview-games">
