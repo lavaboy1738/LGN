@@ -5,6 +5,8 @@ import {useDispatch} from "react-redux";
 import {loadDetail} from "../redux/actions/detailAction";
 import {Link} from "react-router-dom";
 import {resizeImage} from "../util";
+import {useAnimations} from "../hooks/useAnimations";
+import {useScroll} from "../hooks/useScroll";
 
 const GameCardStyle = styled(motion.div)`
     height: 25rem;
@@ -62,10 +64,18 @@ const GameCard = ({name, released, imageURL, id}: Prop)=>{
         document.body.style.overflow = "hidden";
         dispatch(loadDetail(id))
     }
+    const {fadeIn} = useAnimations();
+    const {element, controls} = useScroll(0.2);
     return (
         <Link to={`/game/${id}`}>
-            <GameCardStyle onClick={loadDetailHandler} layoutId={id.toString()}>
-                
+            <GameCardStyle onClick={loadDetailHandler} 
+            layoutId={id.toString()} 
+            variants={fadeIn}
+            initial="hidden"
+            ref={element}
+            animate={controls}
+            >
+
                 <div className="game-title">
                     <motion.h1 layoutId={`title ${id.toString()}`} >{name}</motion.h1>
                 </div>
