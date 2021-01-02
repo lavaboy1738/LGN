@@ -7,6 +7,7 @@ import {rootReducer} from "./redux/reducers/index";
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import {BrowserRouter as Router} from "react-router-dom";
+import {Intro} from "./Components/intro";
 
 const composeEnhancer = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -16,6 +17,7 @@ const store = createStore(rootReducer,
 
 ReactDOM.render(
   <React.StrictMode>
+    <Intro/>
     <Provider store={store}>
       <Router>
         <App />

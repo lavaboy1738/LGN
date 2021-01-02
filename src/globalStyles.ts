@@ -22,7 +22,7 @@ const GlobalStyles = createGlobalStyle`
         @media (max-width: 500px){
             font-size: 10px;
         }
-        @media (orientation: landscape) and (max-width: 1440px){
+        @media (orientation: landscape) and (max-width: 1400px){
             font-size: 12px;
         }
         @media (min-width: 1500px){
