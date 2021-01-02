@@ -1,18 +1,27 @@
-const initialState = {
-    game: undefined,
-    images: undefined,
-    isLoading: true
-}
-
 type Action = {
     type: string;
     payload: {
-        game: any,
-        images: any
+        game: {
+            name: string,
+            rating: number,
+            platforms: {
+                platform: string,
+                id: number
+            }[],
+            background_image: string,
+            description_raw: string,
+        },
+        images: {
+            results: {
+                image: string,
+                id: number
+            }[]
+        },
+        isLoading?: boolean
     }
 }
 
-const detailReducer = (state = initialState, action: Action)=>{
+const detailReducer = (state: any, action: Action)=>{
     switch(action.type){
         case "GET_DETAIL":
             return {

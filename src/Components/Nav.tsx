@@ -34,6 +34,7 @@ const NavStyles = styled.nav`
                 border-bottom: 1px solid rgba(0,0,0,0.4);
                 outline: none;
                 padding: 0 1rem;
+                border-radius: 0;
                 &:focus + .input-span, &:valid + .input-span{
                     transform: translateX(0%);
                     transition: 0.3s all ease-out;

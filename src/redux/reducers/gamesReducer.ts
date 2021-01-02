@@ -8,10 +8,10 @@ export type Game = {
 type Action = {
     type: string;
     payload: {
-        popularGames?: Game[],
-        upcomingGames?: Game[],
-        newGames?: Game[],
-        searchedGames?: Game[]
+        popularGames: Game[],
+        upcomingGames: Game[],
+        newGames: Game[],
+        searchedGames: Game[]
     }
 }
 
