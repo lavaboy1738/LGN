@@ -1,3 +1,5 @@
+import {APIKey} from "./key";
+
 type GamesURLs = {
     popularGamesURL: string;
     upcomingGamesURL: string;
@@ -26,9 +28,9 @@ export const GetGamesURL: () => GamesURLs = () => {
     const currentDateLastYear = `${currentYear - 1}-${getCurrentMonth()}-${getCurrentDay()}`;
     const currentDateNextYear = `${currentYear + 1}-${getCurrentMonth()}-${getCurrentDay()}`;
 
-    const popularGamesURL = `${base_url}games?dates=${currentDateLastYear},${currentDate}&ordering=-rating&page_size=12`;
-    const upcomingGamesURL = `${base_url}games?dates=${currentDate},${currentDateNextYear}&ordering=-added&page_size=12`;
-    const newGamesURL = `${base_url}games?dates=${currentDateLastYear},${currentDate}&ordering=-released&page_size=12`;
+    const popularGamesURL = `${base_url}games?key=${APIKey}&dates=${currentDateLastYear},${currentDate}&ordering=-rating&page_size=12`;
+    const upcomingGamesURL = `${base_url}games?key=${APIKey}&dates=${currentDate},${currentDateNextYear}&ordering=-added&page_size=12`;
+    const newGamesURL = `${base_url}games?key=${APIKey}&dates=${currentDateLastYear},${currentDate}&ordering=-released&page_size=12`;
 
     const gameDetailsURL = (gameID: string) => `${base_url}games/${gameID}`
     const gameImagesURL = (gameID:string) => `${base_url}games/${gameID}/screenshots`
