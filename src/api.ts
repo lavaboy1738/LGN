@@ -32,9 +32,9 @@ export const GetGamesURL: () => GamesURLs = () => {
     const upcomingGamesURL = `${base_url}games?key=${APIKey}&dates=${currentDate},${currentDateNextYear}&ordering=-added&page_size=12`;
     const newGamesURL = `${base_url}games?key=${APIKey}&dates=${currentDateLastYear},${currentDate}&ordering=-released&page_size=12`;
 
-    const gameDetailsURL = (gameID: string) => `${base_url}games/${gameID}`
-    const gameImagesURL = (gameID:string) => `${base_url}games/${gameID}/screenshots`
-    const searchedGameURL = (gameName: string)=> `${base_url}games?search=${gameName}&page_size=6` 
+    const gameDetailsURL = (gameID: string) => `${base_url}games/${gameID}?key=${APIKey}`
+    const gameImagesURL = (gameID:string) => `${base_url}games/${gameID}/screenshots?key=${APIKey}`
+    const searchedGameURL = (gameName: string)=> `${base_url}games?key=${APIKey}&search=${gameName}&page_size=6` 
 
     return {
         popularGamesURL,
